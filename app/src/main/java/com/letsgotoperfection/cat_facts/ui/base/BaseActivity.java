@@ -6,14 +6,23 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 
+import com.letsgotoperfection.cat_facts.ui.NavigationManager;
+import com.letsgotoperfection.cat_facts.ui.cat_facts_list.CatFactsListFragment;
+
 /**
  * @author hossam.
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    public abstract @LayoutRes int getLayoutResourceId();
-    public abstract @StringRes int getTitleResourceId();
+    NavigationManager mNavigationManager;
+
+    public abstract @LayoutRes
+    int getLayoutResourceId();
+
+    public abstract @StringRes
+    int getTitleResourceId();
+
     public abstract void init();
 
     @Override
@@ -22,7 +31,15 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutResourceId());
         setTitle(getTitleResourceId());
         if (savedInstanceState == null) {
+            mNavigationManager = new NavigationManager(getFragmentManager());
+            mNavigationManager.attachAsRoot(new CatFactsListFragment());
             init();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mNavigationManager.navigateBack(this);
     }
 }
