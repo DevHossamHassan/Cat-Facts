@@ -33,4 +33,5 @@ ext {
     junitLibraryVersion = '4.12'
     runnerLibraryVersion = '1.0.1'
     espressoCoreLibraryVersion = '3.0.1'
+    butterknifeLibraryVersion = '8.8.1'
 }

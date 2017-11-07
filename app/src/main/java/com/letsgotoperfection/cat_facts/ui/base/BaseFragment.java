@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * @author hossam.
  */
@@ -18,6 +21,7 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
 
     protected P presenter;
     protected View rootView;
+    private Unbinder unbinder;
 
     protected abstract @LayoutRes
     int getFragmentLayoutResourceId();
@@ -32,11 +36,18 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle
             savedInstanceState) {
         rootView = inflater.inflate(getFragmentLayoutResourceId(), container, false);
+        unbinder = ButterKnife.bind(getViewContext(), rootView);
         return rootView;
     }
 
     @Override
     public Fragment getViewContext() {
         return this;
+    }
+
+    @Override
+    public void onDestroyView() {
+        unbinder.unbind();
+        super.onDestroyView();
     }
 }

@@ -29,6 +29,10 @@ dependencies {
     //custom seekBar view
     implementation "com.xw.repo:bubbleseekbar:$rootProject.ext.bubbleseekbarLibraryVersion"
 
+    //butterKnife
+    implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeLibraryVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeLibraryVersion"
+
     testImplementation "junit:junit:$rootProject.ext.junitLibraryVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerLibraryVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoCoreLibraryVersion"
