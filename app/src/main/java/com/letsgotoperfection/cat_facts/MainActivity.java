@@ -1,13 +1,22 @@
 package com.letsgotoperfection.cat_facts;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.letsgotoperfection.cat_facts.ui.BaseActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public int getLayoutResourceId() {
+        return R.layout.activity_main;
     }
+
+    @Override
+    public int getTitleResourceId() {
+        return R.string.activity_main_title;
+    }
+
+    @Override
+    public void init() {
+
+    }
+
 }
