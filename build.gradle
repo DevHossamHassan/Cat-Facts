@@ -25,3 +25,12 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    supportLibraryVersion = '26.1.0'
+    constraintLayoutVersion = '1.0.2'
+    bubbleseekbarLibraryVersion = '3.9-lite'
+    junitLibraryVersion = '4.12'
+    runnerLibraryVersion = '1.0.1'
+    espressoCoreLibraryVersion = '3.0.1'
+}

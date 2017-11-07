@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Cat-Facts</string>
     <string name="activity_main_title">Cat facts</string>
+    <string name="tvIndexDummy">1</string>
+    <string name="tvCatFactTextDummy">The first cat in space was a French cat named Felicette (a.k.a. “Astrocat”) In 1963, France blasted the cat into outer space. Electrodes implanted in her brains sent neurological signals back to Earth. She survived the trip.</string>
+    <string name="tvCatFactLength">length =</string>
 </resources>
