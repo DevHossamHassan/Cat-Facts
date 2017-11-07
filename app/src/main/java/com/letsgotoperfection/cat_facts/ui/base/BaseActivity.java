@@ -1,4 +1,4 @@
-package com.letsgotoperfection.cat_facts.ui;
+package com.letsgotoperfection.cat_facts.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;

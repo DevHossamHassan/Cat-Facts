@@ -1,6 +1,6 @@
 package com.letsgotoperfection.cat_facts;
 
-import com.letsgotoperfection.cat_facts.ui.BaseActivity;
+import com.letsgotoperfection.cat_facts.ui.base.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 
