@@ -1,5 +1,7 @@
 package com.letsgotoperfection.cat_facts.cat_facts_list;
 
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
     RecyclerView recyclerViewCatFacts;
     @BindView(R.id.bubbleSeekBar)
     BubbleSeekBar bubbleSeekBar;
+    CatFactsAdapter catFactsAdapter;
     BubbleSeekBar.OnProgressChangedListener progressChangedListener =
             new OnSeekBarProgressChanged() {
                 @Override
@@ -42,7 +45,17 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
 
     @Override
     protected void init() {
+        presenter = new CatFactsListPresenter(this);
+
         bubbleSeekBar.setOnProgressChangedListener(progressChangedListener);
+
+        catFactsAdapter = new CatFactsAdapter((CatFactsListPresenter) presenter);
+
+        recyclerViewCatFacts.setHasFixedSize(true);
+        recyclerViewCatFacts.setItemAnimator(new DefaultItemAnimator());
+        recyclerViewCatFacts.setLayoutManager(
+                new LinearLayoutManager(getActivity().getApplicationContext()));
+        recyclerViewCatFacts.setAdapter(catFactsAdapter);
     }
 
     @Override

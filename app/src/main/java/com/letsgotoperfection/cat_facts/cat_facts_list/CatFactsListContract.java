@@ -4,6 +4,8 @@ import android.app.Fragment;
 
 import com.letsgotoperfection.cat_facts.base.BaseContract;
 
+import java.util.List;
+
 /**
  * @author hossam.
  */
@@ -21,5 +23,16 @@ public class CatFactsListContract {
     interface Presenter extends BaseContract.Presenter {
 
         void onLengthChanged(int length);
+
+        List<CatFact> getCatFacts();
+    }
+
+    interface RowView {
+
+        void setCatFactText(String catFactText);
+
+        void setCatFactLength(int catFactLength);
+
+        void setCatFactIndex(int catFactIndex);
     }
 }
