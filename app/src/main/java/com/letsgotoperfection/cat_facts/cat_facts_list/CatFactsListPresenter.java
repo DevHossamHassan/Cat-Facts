@@ -1,8 +1,8 @@
 package com.letsgotoperfection.cat_facts.cat_facts_list;
 
 import com.letsgotoperfection.cat_facts.base.BasePresenter;
+import com.letsgotoperfection.cat_facts.data.CatFactsBo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,16 +12,23 @@ import java.util.List;
 public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.View>
         implements CatFactsListContract.Presenter {
 
+    private final CatFactsBo catFactsBo;
     List<CatFact> catFacts;
 
-    public CatFactsListPresenter(CatFactsListContract.View view) {
+    public CatFactsListPresenter(CatFactsListContract.View view, CatFactsBo catFactsBo) {
         super(view);
-        catFacts = getCatFacts();
+        this.catFactsBo = catFactsBo;
+        catFacts = catFactsBo.fetchCatFacts();
     }
 
     @Override
     public void onLengthChanged(int length) {
 
+    }
+
+    @Override
+    public List<CatFact> getCatFacts() {
+        return catFacts;
     }
 
     public void onBindCatFactViewItemAtPosition(int position, CatFactsHolder holder) {
@@ -35,15 +42,4 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
         return catFacts.size();
     }
 
-    @Override
-    public List<CatFact> getCatFacts() {
-        List<CatFact> catFacts = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            CatFact catFact = new CatFact("The first cat in space was a French cat named " +
-                    "Felicette (a.k.a. “Astrocat”) In 1963,"
-                    , i * 4);
-            catFacts.add(catFact);
-        }
-        return catFacts;
-    }
 }

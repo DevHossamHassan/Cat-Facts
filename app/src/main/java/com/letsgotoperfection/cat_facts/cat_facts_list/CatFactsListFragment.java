@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import com.letsgotoperfection.cat_facts.R;
 import com.letsgotoperfection.cat_facts.base.BaseFragment;
+import com.letsgotoperfection.cat_facts.data.CatFactsBo;
+import com.letsgotoperfection.cat_facts.data.MockedCatFactsDao;
 import com.letsgotoperfection.cat_facts.listeners.OnSeekBarProgressChanged;
 import com.xw.repo.BubbleSeekBar;
 
@@ -45,7 +47,7 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
 
     @Override
     protected void init() {
-        presenter = new CatFactsListPresenter(this);
+        presenter = new CatFactsListPresenter(this, new CatFactsBo(new MockedCatFactsDao()));
 
         bubbleSeekBar.setOnProgressChangedListener(progressChangedListener);
 
