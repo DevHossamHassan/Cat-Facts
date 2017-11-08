@@ -1,4 +1,4 @@
-package com.letsgotoperfection.cat_facts.ui.base;
+package com.letsgotoperfection.cat_facts.base;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 
-import com.letsgotoperfection.cat_facts.ui.NavigationManager;
-import com.letsgotoperfection.cat_facts.ui.cat_facts_list.CatFactsListFragment;
+import com.letsgotoperfection.cat_facts.NavigationManager;
+import com.letsgotoperfection.cat_facts.cat_facts_list.CatFactsListFragment;
 
 /**
  * @author hossam.

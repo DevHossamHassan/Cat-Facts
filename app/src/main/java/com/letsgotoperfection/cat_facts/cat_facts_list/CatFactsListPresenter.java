@@ -1,6 +1,6 @@
-package com.letsgotoperfection.cat_facts.ui.cat_facts_list;
+package com.letsgotoperfection.cat_facts.cat_facts_list;
 
-import com.letsgotoperfection.cat_facts.ui.base.BasePresenter;
+import com.letsgotoperfection.cat_facts.base.BasePresenter;
 
 /**
  * @author hossam.

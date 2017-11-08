@@ -1,8 +1,8 @@
-package com.letsgotoperfection.cat_facts.ui.cat_facts_list;
+package com.letsgotoperfection.cat_facts.cat_facts_list;
 
 import android.app.Fragment;
 
-import com.letsgotoperfection.cat_facts.ui.base.BaseContract;
+import com.letsgotoperfection.cat_facts.base.BaseContract;
 
 /**
  * @author hossam.

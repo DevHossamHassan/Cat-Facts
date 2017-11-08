@@ -1,4 +1,4 @@
-package com.letsgotoperfection.cat_facts.ui;
+package com.letsgotoperfection.cat_facts;
 
 /**
  * @author hossam.
@@ -11,8 +11,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.text.TextUtils;
-
-import com.letsgotoperfection.cat_facts.R;
 
 public class NavigationManager {
     private FragmentManager mFragmentManager;

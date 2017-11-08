@@ -1,11 +1,11 @@
-package com.letsgotoperfection.cat_facts.ui.cat_facts_list;
+package com.letsgotoperfection.cat_facts.cat_facts_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.letsgotoperfection.cat_facts.R;
+import com.letsgotoperfection.cat_facts.base.BaseFragment;
 import com.letsgotoperfection.cat_facts.listeners.OnSeekBarProgressChanged;
-import com.letsgotoperfection.cat_facts.ui.base.BaseFragment;
 import com.xw.repo.BubbleSeekBar;
 
 import butterknife.BindView;

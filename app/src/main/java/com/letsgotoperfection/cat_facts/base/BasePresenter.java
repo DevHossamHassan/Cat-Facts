@@ -1,4 +1,4 @@
-package com.letsgotoperfection.cat_facts.ui.base;
+package com.letsgotoperfection.cat_facts.base;
 
 import java.lang.ref.WeakReference;
 
