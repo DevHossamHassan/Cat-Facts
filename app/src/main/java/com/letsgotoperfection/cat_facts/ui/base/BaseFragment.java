@@ -37,6 +37,7 @@ public abstract class BaseFragment<P extends BaseContract.Presenter> extends Fra
             savedInstanceState) {
         rootView = inflater.inflate(getFragmentLayoutResourceId(), container, false);
         unbinder = ButterKnife.bind(getViewContext(), rootView);
+        init();
         return rootView;
     }
 
