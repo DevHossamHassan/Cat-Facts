@@ -1,5 +1,6 @@
 package com.letsgotoperfection.cat_facts.cat_facts_list;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,8 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
     RecyclerView recyclerViewCatFacts;
     @BindView(R.id.bubbleSeekBar)
     BubbleSeekBar bubbleSeekBar;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
     CatFactsAdapter catFactsAdapter;
     BubbleSeekBar.OnProgressChangedListener progressChangedListener =
             new OnSeekBarProgressChanged() {
@@ -49,6 +52,7 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
                 new AppCatFactsDao()));
 
         bubbleSeekBar.setOnProgressChangedListener(progressChangedListener);
+        swipeRefreshLayout.setEnabled(false);
 
         catFactsAdapter = new CatFactsAdapter((CatFactsListPresenter) presenter);
 
@@ -61,12 +65,12 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
 
     @Override
     public void ShowProgressBar() {
-
+        swipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void HideProgressBar() {
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

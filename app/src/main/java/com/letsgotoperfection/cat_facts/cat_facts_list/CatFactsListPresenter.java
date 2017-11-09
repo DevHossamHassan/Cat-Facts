@@ -34,6 +34,7 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
             @Override
             public void onSubscribe(Disposable d) {
                 Log.d("Hoss", "onSubscribe ");
+                view.get().ShowProgressBar();
             }
 
             @Override
@@ -41,12 +42,15 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
                 catFacts = catFactsResponse.getData();
                 if (view != null && view.get() != null) {
                     view.get().notifyDataSetChanged();
+                    view.get().HideProgressBar();
                 }
+
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.d("Hoss", "Error " + e);
+                view.get().HideProgressBar();
             }
         });
 
