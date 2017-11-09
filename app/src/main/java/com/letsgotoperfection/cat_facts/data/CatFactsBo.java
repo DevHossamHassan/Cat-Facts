@@ -1,8 +1,8 @@
 package com.letsgotoperfection.cat_facts.data;
 
-import com.letsgotoperfection.cat_facts.cat_facts_list.CatFact;
+import com.letsgotoperfection.cat_facts.cat_facts_list.CatFactsResponse;
 
-import java.util.List;
+import io.reactivex.Single;
 
 /**
  * @author hossam.
@@ -15,7 +15,7 @@ public class CatFactsBo {
         this.catfactsDao = catfactsDao;
     }
 
-    public List<CatFact> fetchCatFacts() {
-        return catfactsDao.fetchCatFacts();
+    public Single<CatFactsResponse> fetchCatFacts(int length) {
+        return catfactsDao.fetchCatFacts(length);
     }
 }
