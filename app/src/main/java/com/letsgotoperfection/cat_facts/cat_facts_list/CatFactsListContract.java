@@ -4,13 +4,11 @@ import android.app.Fragment;
 
 import com.letsgotoperfection.cat_facts.base.BaseContract;
 
-import java.util.List;
-
 /**
  * @author hossam.
  */
 
-public class CatFactsListContract {
+class CatFactsListContract {
 
     interface View extends BaseContract.View<Fragment> {
 
@@ -20,13 +18,14 @@ public class CatFactsListContract {
 
         void notifyDataSetChanged();
 
+        void notifyDataSetInserted(int totalItems, int i);
     }
 
     interface Presenter extends BaseContract.Presenter {
 
         void onLengthChanged(int length);
 
-        List<CatFact> getCatFacts();
+        void onLoadMoreTriggered(int length);
     }
 
     interface RowView {

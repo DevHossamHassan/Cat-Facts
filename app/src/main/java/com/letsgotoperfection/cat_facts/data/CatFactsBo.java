@@ -15,7 +15,7 @@ public class CatFactsBo {
         this.catfactsDao = catfactsDao;
     }
 
-    public Single<CatFactsResponse> fetchCatFacts(int length) {
-        return catfactsDao.fetchCatFacts(length);
+    public Single<CatFactsResponse> fetchCatFacts(int length, int pageNumber) {
+        return catfactsDao.fetchCatFacts(length, pageNumber);
     }
 }

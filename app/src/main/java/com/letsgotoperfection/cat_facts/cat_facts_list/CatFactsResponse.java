@@ -13,7 +13,7 @@ public class CatFactsResponse {
 
     private String last_page;
 
-    private String total;
+    private int total;
 
     private String per_page;
 
@@ -49,11 +49,11 @@ public class CatFactsResponse {
         this.last_page = last_page;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 

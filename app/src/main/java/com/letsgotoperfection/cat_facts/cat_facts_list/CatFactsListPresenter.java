@@ -1,7 +1,5 @@
 package com.letsgotoperfection.cat_facts.cat_facts_list;
 
-import android.util.Log;
-
 import com.letsgotoperfection.cat_facts.base.BasePresenter;
 import com.letsgotoperfection.cat_facts.data.CatFactsBo;
 
@@ -20,9 +18,11 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
 
     private final CatFactsBo catFactsBo;
     private List<CatFact> catFacts;
+    private int currentPage = 1;
+    private int catFactsCount;
 
 
-    public CatFactsListPresenter(CatFactsListContract.View view, CatFactsBo catFactsBo) {
+    CatFactsListPresenter(CatFactsListContract.View view, CatFactsBo catFactsBo) {
         super(view);
         catFacts = new ArrayList<>();
         this.catFactsBo = catFactsBo;
@@ -30,26 +30,25 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
 
     @Override
     public void onLengthChanged(int length) {
-        catFactsBo.fetchCatFacts(length).subscribe(new SingleObserver<CatFactsResponse>() {
+        currentPage = 1;
+        catFactsBo.fetchCatFacts(length, currentPage).subscribe(new SingleObserver<CatFactsResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
-                Log.d("Hoss", "onSubscribe ");
                 view.get().ShowProgressBar();
             }
 
             @Override
             public void onSuccess(CatFactsResponse catFactsResponse) {
                 catFacts = catFactsResponse.getData();
+                catFactsCount = catFacts.size();
                 if (view != null && view.get() != null) {
                     view.get().notifyDataSetChanged();
                     view.get().HideProgressBar();
                 }
-
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.d("Hoss", "Error " + e);
                 view.get().HideProgressBar();
             }
         });
@@ -57,18 +56,40 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
     }
 
     @Override
-    public List<CatFact> getCatFacts() {
-        return catFacts;
+    public void onLoadMoreTriggered(int length) {
+        catFactsBo.fetchCatFacts(length, ++currentPage).subscribe(new SingleObserver<CatFactsResponse>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                view.get().ShowProgressBar();
+            }
+
+            @Override
+            public void onSuccess(CatFactsResponse catFactsResponse) {
+                catFacts.addAll(catFactsResponse.getData());
+                if (view != null && view.get() != null) {
+                    view.get().notifyDataSetInserted(catFactsCount, catFactsResponse.getData()
+                            .size());
+                    catFactsCount += catFactsResponse.getData().size();
+                    view.get().HideProgressBar();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                currentPage--;
+                view.get().HideProgressBar();
+            }
+        });
     }
 
-    public void onBindCatFactViewItemAtPosition(int position, CatFactsHolder holder) {
+    void onBindCatFactViewItemAtPosition(int position, CatFactsHolder holder) {
         CatFact catFact = catFacts.get(position);
         holder.setCatFactIndex(position);
         holder.setCatFactLength(catFact.getLength());
         holder.setCatFactText(catFact.getFact());
     }
 
-    public int getCatFactsCount() {
+    int getCatFactsCount() {
         return catFacts.size();
     }
 

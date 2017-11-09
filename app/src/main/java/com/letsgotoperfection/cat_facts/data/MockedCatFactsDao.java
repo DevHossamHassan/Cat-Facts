@@ -14,7 +14,7 @@ import io.reactivex.Single;
 
 public class MockedCatFactsDao extends CatFactsDao {
     @Override
-    public Single<CatFactsResponse> fetchCatFacts(int length) {
+    public Single<CatFactsResponse> fetchCatFacts(int length, int pageNumber) {
         Single<CatFactsResponse> catFactsResponseSingle;
         List<CatFact> catFacts = new ArrayList<>();
         for (int i = 0; i < 50; i++) {

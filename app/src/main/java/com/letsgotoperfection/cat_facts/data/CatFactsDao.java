@@ -9,5 +9,5 @@ import io.reactivex.Single;
  */
 //data access object
 public abstract class CatFactsDao {
-    public abstract Single<CatFactsResponse> fetchCatFacts(int length);
+    public abstract Single<CatFactsResponse> fetchCatFacts(int length, int pageNumber);
 }

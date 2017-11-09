@@ -9,6 +9,7 @@ import com.letsgotoperfection.cat_facts.R;
 import com.letsgotoperfection.cat_facts.base.BaseFragment;
 import com.letsgotoperfection.cat_facts.data.AppCatFactsDao;
 import com.letsgotoperfection.cat_facts.data.CatFactsBo;
+import com.letsgotoperfection.cat_facts.listeners.OnRecyclerViewScrollToTheEnd;
 import com.letsgotoperfection.cat_facts.listeners.OnSeekBarProgressChanged;
 import com.xw.repo.BubbleSeekBar;
 
@@ -55,13 +56,31 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
         swipeRefreshLayout.setEnabled(false);
 
         catFactsAdapter = new CatFactsAdapter((CatFactsListPresenter) presenter);
+        prepareRecyclerView();
+    }
 
+    private void prepareRecyclerView() {
+        LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerViewCatFacts.setHasFixedSize(true);
         recyclerViewCatFacts.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewCatFacts.setLayoutManager(
-                new LinearLayoutManager(getActivity().getApplicationContext()));
+        recyclerViewCatFacts.setLayoutManager(linearLayoutManager);
         recyclerViewCatFacts.setAdapter(catFactsAdapter);
+
+        recyclerViewCatFacts.addOnScrollListener(
+                new OnRecyclerViewScrollToTheEnd(linearLayoutManager) {
+                    @Override
+                    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        if (linearLayoutManager.findLastCompletelyVisibleItemPosition() ==
+                                catFactsAdapter.getItemCount() - 1) {
+                            presenter.onLoadMoreTriggered(bubbleSeekBar.getProgress());
+
+                        }
+                    }
+                });
     }
+
 
     @Override
     public void ShowProgressBar() {
@@ -76,5 +95,10 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
     @Override
     public void notifyDataSetChanged() {
         catFactsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void notifyDataSetInserted(int totalItems, int i) {
+        catFactsAdapter.notifyItemRangeInserted(totalItems, i);
     }
 }

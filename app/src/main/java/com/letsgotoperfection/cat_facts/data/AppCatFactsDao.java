@@ -23,8 +23,8 @@ public class AppCatFactsDao extends CatFactsDao {
     }
 
     @Override
-    public Single<CatFactsResponse> fetchCatFacts(int length) {
-        return catFactsService.getCatFacts(20, length, 1)
+    public Single<CatFactsResponse> fetchCatFacts(int length, int pageNumber) {
+        return catFactsService.getCatFacts(20, length, pageNumber)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
 
