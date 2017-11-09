@@ -1,5 +1,6 @@
 package com.letsgotoperfection.cat_facts.cat_facts_list;
 
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,12 +84,12 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
 
 
     @Override
-    public void ShowProgressBar() {
+    public void showProgressBar() {
         swipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
-    public void HideProgressBar() {
+    public void hideProgressBar() {
         swipeRefreshLayout.setRefreshing(false);
     }
 
@@ -98,7 +99,16 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
     }
 
     @Override
-    public void notifyDataSetInserted(int totalItems, int i) {
-        catFactsAdapter.notifyItemRangeInserted(totalItems, i);
+    public void notifyDataSetInserted(int startingFromPosition, int itemsCount) {
+        catFactsAdapter.notifyItemRangeInserted(startingFromPosition, itemsCount);
+    }
+
+    @Override
+    public void shareText(String text) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, text);
+        sendIntent.setType("text/plain");
+        this.startActivity(sendIntent);
     }
 }

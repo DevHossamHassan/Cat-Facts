@@ -12,13 +12,15 @@ class CatFactsListContract {
 
     interface View extends BaseContract.View<Fragment> {
 
-        void ShowProgressBar();
+        void showProgressBar();
 
-        void HideProgressBar();
+        void hideProgressBar();
 
         void notifyDataSetChanged();
 
         void notifyDataSetInserted(int totalItems, int i);
+
+        void shareText(String string);
     }
 
     interface Presenter extends BaseContract.Presenter {
@@ -26,6 +28,8 @@ class CatFactsListContract {
         void onLengthChanged(int length);
 
         void onLoadMoreTriggered(int length);
+
+        void shareText(int position);
     }
 
     interface RowView {

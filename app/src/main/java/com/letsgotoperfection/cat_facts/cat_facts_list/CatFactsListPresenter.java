@@ -34,7 +34,7 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
         catFactsBo.fetchCatFacts(length, currentPage).subscribe(new SingleObserver<CatFactsResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
-                view.get().ShowProgressBar();
+                view.get().showProgressBar();
             }
 
             @Override
@@ -43,13 +43,13 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
                 catFactsCount = catFacts.size();
                 if (view != null && view.get() != null) {
                     view.get().notifyDataSetChanged();
-                    view.get().HideProgressBar();
+                    view.get().hideProgressBar();
                 }
             }
 
             @Override
             public void onError(Throwable e) {
-                view.get().HideProgressBar();
+                view.get().hideProgressBar();
             }
         });
 
@@ -60,7 +60,7 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
         catFactsBo.fetchCatFacts(length, ++currentPage).subscribe(new SingleObserver<CatFactsResponse>() {
             @Override
             public void onSubscribe(Disposable d) {
-                view.get().ShowProgressBar();
+                view.get().showProgressBar();
             }
 
             @Override
@@ -70,16 +70,21 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
                     view.get().notifyDataSetInserted(catFactsCount, catFactsResponse.getData()
                             .size());
                     catFactsCount += catFactsResponse.getData().size();
-                    view.get().HideProgressBar();
+                    view.get().hideProgressBar();
                 }
             }
 
             @Override
             public void onError(Throwable e) {
                 currentPage--;
-                view.get().HideProgressBar();
+                view.get().hideProgressBar();
             }
         });
+    }
+
+    @Override
+    public void shareText(int position) {
+        view.get().shareText(catFacts.get(position).getFact());
     }
 
     void onBindCatFactViewItemAtPosition(int position, CatFactsHolder holder) {

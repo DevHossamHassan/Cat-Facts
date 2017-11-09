@@ -6,6 +6,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.letsgotoperfection.cat_facts.R;
+import com.letsgotoperfection.cat_facts.listeners.OnRecyclerViewClickListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,7 +16,7 @@ import butterknife.ButterKnife;
  */
 
 public class CatFactsHolder extends RecyclerView.ViewHolder implements
-        CatFactsListContract.RowView {
+        CatFactsListContract.RowView, View.OnClickListener {
 
     @BindView(R.id.tvCatFactIndex)
     TextView tvCatFactIndex;
@@ -25,10 +26,13 @@ public class CatFactsHolder extends RecyclerView.ViewHolder implements
     TextView tvCatFactText;
     @BindView(R.id.imgButtonShare)
     ImageButton imageButtonShare;
+    private OnRecyclerViewClickListener onRecyclerViewClickListener;
 
-    public CatFactsHolder(View itemView) {
+    public CatFactsHolder(View itemView, OnRecyclerViewClickListener onRecyclerViewClickListener) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+        this.onRecyclerViewClickListener = onRecyclerViewClickListener;
+        imageButtonShare.setOnClickListener(this);
     }
 
     @Override
@@ -46,5 +50,10 @@ public class CatFactsHolder extends RecyclerView.ViewHolder implements
     public void setCatFactIndex(int catFactIndex) {
         String string = String.valueOf(catFactIndex);
         tvCatFactIndex.setText(string);
+    }
+
+    @Override
+    public void onClick(View view) {
+        onRecyclerViewClickListener.onRecyclerViewItemClicked(view, this.getAdapterPosition());
     }
 }
