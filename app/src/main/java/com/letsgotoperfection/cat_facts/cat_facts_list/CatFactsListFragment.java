@@ -3,12 +3,11 @@ package com.letsgotoperfection.cat_facts.cat_facts_list;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.letsgotoperfection.cat_facts.R;
 import com.letsgotoperfection.cat_facts.base.BaseFragment;
+import com.letsgotoperfection.cat_facts.data.AppCatFactsDao;
 import com.letsgotoperfection.cat_facts.data.CatFactsBo;
-import com.letsgotoperfection.cat_facts.data.MockedCatFactsDao;
 import com.letsgotoperfection.cat_facts.listeners.OnSeekBarProgressChanged;
 import com.xw.repo.BubbleSeekBar;
 
@@ -30,8 +29,7 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
                 @Override
                 public void getProgressOnActionUp(
                         BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
-                    Toast.makeText(getViewContext().getActivity(), "The Selected Length is = " +
-                            Math.round(progress), Toast.LENGTH_LONG).show();
+                    presenter.onLengthChanged(Math.round(progress));
                 }
             };
 
@@ -47,7 +45,8 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
 
     @Override
     protected void init() {
-        presenter = new CatFactsListPresenter(this, new CatFactsBo(new MockedCatFactsDao()));
+        presenter = new CatFactsListPresenter(this, new CatFactsBo(
+                new AppCatFactsDao()));
 
         bubbleSeekBar.setOnProgressChangedListener(progressChangedListener);
 
@@ -68,5 +67,10 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
     @Override
     public void HideProgressBar() {
 
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        catFactsAdapter.notifyDataSetChanged();
     }
 }

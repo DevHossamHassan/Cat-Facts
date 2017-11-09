@@ -18,6 +18,8 @@ public class CatFactsListContract {
 
         void HideProgressBar();
 
+        void notifyDataSetChanged();
+
     }
 
     interface Presenter extends BaseContract.Presenter {
