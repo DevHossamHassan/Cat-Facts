@@ -1,4 +1,4 @@
-package com.letsgotoperfection.cat_facts.cat_facts_list;
+package com.letsgotoperfection.cat_facts.catfacts;
 
 import com.letsgotoperfection.cat_facts.base.BasePresenter;
 import com.letsgotoperfection.cat_facts.data.CatFactsBo;

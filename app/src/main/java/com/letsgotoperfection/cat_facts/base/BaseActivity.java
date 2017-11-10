@@ -7,7 +7,7 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 
 import com.letsgotoperfection.cat_facts.NavigationManager;
-import com.letsgotoperfection.cat_facts.cat_facts_list.CatFactsListFragment;
+import com.letsgotoperfection.cat_facts.catfacts.CatFactsListFragment;
 
 /**
  * @author hossam.

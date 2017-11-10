@@ -1,4 +1,4 @@
-package com.letsgotoperfection.cat_facts.cat_facts_list;
+package com.letsgotoperfection.cat_facts.catfacts;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

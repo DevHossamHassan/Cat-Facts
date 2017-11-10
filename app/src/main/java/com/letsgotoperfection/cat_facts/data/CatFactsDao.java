@@ -1,6 +1,6 @@
 package com.letsgotoperfection.cat_facts.data;
 
-import com.letsgotoperfection.cat_facts.cat_facts_list.CatFactsResponse;
+import com.letsgotoperfection.cat_facts.catfacts.CatFactsResponse;
 
 import io.reactivex.Single;
 
