@@ -1,5 +1,7 @@
 package com.letsgotoperfection.cat_facts.catfacts;
 
+import android.support.annotation.VisibleForTesting;
+
 import com.letsgotoperfection.cat_facts.base.BasePresenter;
 import com.letsgotoperfection.cat_facts.data.CatFactsBo;
 
@@ -22,6 +24,7 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
     private int catFactsCount;
 
 
+    @VisibleForTesting
     CatFactsListPresenter(CatFactsListContract.View view, CatFactsBo catFactsBo) {
         super(view);
         catFacts = new ArrayList<>();
@@ -87,6 +90,7 @@ public class CatFactsListPresenter extends BasePresenter<CatFactsListContract.Vi
         view.get().shareText(catFacts.get(position).getFact());
     }
 
+    @VisibleForTesting
     void onBindCatFactViewItemAtPosition(int position, CatFactsHolder holder) {
         CatFact catFact = catFacts.get(position);
         holder.setCatFactIndex(position);

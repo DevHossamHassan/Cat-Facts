@@ -1,15 +1,16 @@
 package com.letsgotoperfection.cat_facts.catfacts;
 
 import android.app.Fragment;
+import android.support.annotation.VisibleForTesting;
 
 import com.letsgotoperfection.cat_facts.base.BaseContract;
 
 /**
  * @author hossam.
  */
-
+@VisibleForTesting
 class CatFactsListContract {
-
+    @VisibleForTesting
     interface View extends BaseContract.View<Fragment> {
 
         void showProgressBar();

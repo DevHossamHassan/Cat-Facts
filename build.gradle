@@ -38,4 +38,7 @@ ext {
     rxJavaLibraryVersion = '2.1.3'
     rxAndroidLibraryVersion = '2.0.1'
     daggerLibraryVersion = '2.13'
+    mockitoLibraryVersion = '1.10.19'
+    hamcrestLibraryVersion = '1.3'
+    powerMockitoLibraryVersion = '1.6.2'
 }
