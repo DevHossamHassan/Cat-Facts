@@ -80,6 +80,11 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestLibraryVersion"
     testImplementation "org.powermock:powermock-module-junit4:$rootProject.ext.powerMockitoLibraryVersion"
     testImplementation "org.powermock:powermock-api-mockito:$rootProject.ext.powerMockitoLibraryVersion"
+    //Espresso runners
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation "com.android.support.test:rules:$rootProject.ext.runnerLibraryVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerLibraryVersion"
+    // Espresso UI Testing dependencies.
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoCoreLibraryVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoCoreLibraryVersion"
 }
