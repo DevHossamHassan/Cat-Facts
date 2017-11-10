@@ -4,8 +4,8 @@ import android.app.Application;
 
 import com.letsgotoperfection.cat_facts.dagger.ApplicationComponent;
 import com.letsgotoperfection.cat_facts.dagger.ApplicationModule;
-import com.letsgotoperfection.cat_facts.dagger.ContextModule;
 import com.letsgotoperfection.cat_facts.dagger.DaggerApplicationComponent;
+import com.letsgotoperfection.cat_facts.dagger.NetworkModule;
 
 
 /**
@@ -26,11 +26,10 @@ public class CatFactsApplication extends Application {
         catFactsApplication = this;
         applicationComponent = DaggerApplicationComponent
                 .builder()
-                .contextModule(new ContextModule(this))
-                .applicationModule(new ApplicationModule())
+                .applicationModule(new ApplicationModule(this))
+                .networkModule(new NetworkModule())
                 .build();
 
-        applicationComponent.inject(this);
     }
 
     public ApplicationComponent getComponent() {

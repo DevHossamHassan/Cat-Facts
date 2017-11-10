@@ -19,7 +19,7 @@ public class AppCatFactsDao extends CatFactsDao {
     CatFactsService catFactsService;
 
     public AppCatFactsDao() {
-        CatFactsApplication.get().getComponent().inject(this);
+        catFactsService = CatFactsApplication.get().getComponent().catFactsService();
     }
 
     @Override

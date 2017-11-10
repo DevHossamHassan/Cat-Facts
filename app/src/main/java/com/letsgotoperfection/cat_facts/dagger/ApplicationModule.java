@@ -1,65 +1,28 @@
 package com.letsgotoperfection.cat_facts.dagger;
 
-import android.app.Application;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.letsgotoperfection.cat_facts.remote.CatFactsService;
-
-import java.util.concurrent.TimeUnit;
+import com.letsgotoperfection.cat_facts.CatFactsApplication;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import okhttp3.Cache;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author hossam.
  */
+@Singleton
 @Module
 public class ApplicationModule {
+    private CatFactsApplication catFactsApplication;
 
-    @Provides
-    @Singleton
-    Cache provideCache(Application application) {
-        int cacheSize = 10 * 1024 * 1024;
-        return new Cache(application.getCacheDir(), cacheSize);
+    public ApplicationModule(CatFactsApplication catFactsApplication) {
+        this.catFactsApplication = catFactsApplication;
     }
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(Cache cache) {
-        return new OkHttpClient.Builder()
-                .connectTimeout(20000, TimeUnit.MILLISECONDS)
-                .readTimeout(20000, TimeUnit.MILLISECONDS)
-                .readTimeout(20000, TimeUnit.MILLISECONDS)
-                .cache(cache)
-                .build();
-    }
-
-    @Provides
-    @Singleton
-    Gson provideGson() {
-        return new GsonBuilder()
-                .setLenient()
-                .create();
-    }
-
-    @Provides
-    @Singleton
-    CatFactsService provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
-        return new Retrofit.Builder()
-                .baseUrl("https://catfact.ninja/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(okHttpClient)
-                .build()
-                .create(CatFactsService.class);
+    CatFactsApplication provideCatFactsApplication() {
+        return catFactsApplication;
     }
 
 }

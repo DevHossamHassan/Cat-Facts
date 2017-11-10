@@ -1,7 +1,6 @@
 package com.letsgotoperfection.cat_facts.dagger;
 
-import com.letsgotoperfection.cat_facts.CatFactsApplication;
-import com.letsgotoperfection.cat_facts.data.AppCatFactsDao;
+import com.letsgotoperfection.cat_facts.remote.CatFactsService;
 
 import javax.inject.Singleton;
 
@@ -11,11 +10,7 @@ import dagger.Component;
  * @author hossam.
  */
 @Singleton
-@Component(modules = {ContextModule.class, ApplicationModule.class})
+@Component(modules = {ApplicationModule.class, NetworkModule.class})
 public interface ApplicationComponent {
-
-    void inject(CatFactsApplication application);
-
-    void inject(AppCatFactsDao catFactsDao);
-
+    CatFactsService catFactsService();
 }
