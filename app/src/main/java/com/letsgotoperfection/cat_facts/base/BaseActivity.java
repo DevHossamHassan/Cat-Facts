@@ -40,6 +40,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        mNavigationManager.navigateBack(this);
+        if (mNavigationManager != null) {
+            mNavigationManager.navigateBack(this);
+        }
     }
 }

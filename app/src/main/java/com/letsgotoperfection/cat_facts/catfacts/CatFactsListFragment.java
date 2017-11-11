@@ -90,7 +90,9 @@ public class CatFactsListFragment extends BaseFragment<CatFactsListContract.Pres
 
     @Override
     public void hideProgressBar() {
-        swipeRefreshLayout.setRefreshing(false);
+        if (swipeRefreshLayout != null) {
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 
     @Override
