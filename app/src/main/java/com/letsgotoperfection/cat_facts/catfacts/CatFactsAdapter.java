@@ -13,7 +13,6 @@ import com.letsgotoperfection.cat_facts.R;
 public class CatFactsAdapter extends RecyclerView.Adapter<CatFactsHolder> {
 
     private final CatFactsListPresenter presenter;
-    OnShareButtonClicked onShareButtonClicked;
 
     public CatFactsAdapter(CatFactsListPresenter presenter) {
         this.presenter = presenter;
@@ -37,10 +36,5 @@ public class CatFactsAdapter extends RecyclerView.Adapter<CatFactsHolder> {
     public int getItemCount() {
         return presenter.getCatFactsCount();
     }
-
-    public interface OnShareButtonClicked {
-        void onShareButtonClicked(int position);
-    }
-
 
 }
